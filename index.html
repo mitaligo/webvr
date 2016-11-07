@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<!-- Include the a-frame library -->
+		<meta charset="UTF-8">
+        <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+    </head>
+    
+    <body>
+		<!-- The VR code -->
+        <a-scene>
+			<a-assets>
+				<img id="texture" src="image/bricks.jpg"/>
+			</a-assets>
+			<!-- Create a box with this color and dimensions 
+				position: with respect to the axis
+				rotation: the angle at which the object is placed
+				scale: 
+			-->
+			<a-box color="#FF0000" width="0.5" height="0.5" depth="1"
+					position="0 0 0"
+					rotation="45 45 45"
+					scale="1.5 1 1.5"
+					id="boxElement">
+				<!-- Add animation to the object, happens on the load of system -->
+				<a-animation attribute="rotation" repeat="indefinite" to="0 360 0"></a-animation>
+			</a-box>
+			<!-- Cone with texture -->
+			<a-cone height="2" radius-top="0.1" 
+					src="#texture"
+					position="2 2 2"
+					rotation="30 30 30"
+					scale="0.5 0.5 0.5"
+					if="coneElement">
+				<!-- Add an animation on the event, here if the object is touched via the cursor, it will start the rotation -->
+				<a-animation attribute="rotation" begin="mouseenter" repeat="indefinite" to="0 360 0"></a-animation>
+				<a-event name="mouseenter"></a-event>
+			</a-cone>
+			<!-- Create a cursor for user interaction -->
+			<a-camera position="0 3 3">
+                <a-cursor color="#00FF00">
+            </a-camera>
+			
+			<!-- Add the type and color of light over the object 
+				Since one is spot light for cone element, that means it will be pointing only on a spot 
+				whereas the point light will be giving color in all directions hence the cone has effect of point light too-->			
+			<a-light type="point" color="#0000FF" position="-5 0 0" look-at="#coneElement"></a-light>
+			<a-light type="point" color="#FF00FF" position="-20 0 0" look-at="#boxElement"></a-light>
+			
+			<!-- This adds a background image or a 360 degree photo -->
+			<a-sky src="image/skybox.jpg"></a-sky>
+        </a-scene>
+    </body>
+</html>

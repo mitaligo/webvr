@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<!-- Include the a-frame library -->
+		<meta charset="UTF-8">
+        <script src="https://aframe.io/releases/0.2.0/aframe.js"></script>
+    </head>
+    
+    <body>
+		<!-- The VR code -->
+        <a-scene>
+			<a-assets>
+				<img id="texture" src="image/curvedImage.jpg"/>
+			</a-assets>
+			<!-- Way to add an image in a curved from to the scene so as the image continuity does not break 
+				theta-length: defines the degree teh image will be curved-->
+			<a-curvedimage src="#texture" radius="5.5" height="20"
+							theta-length="361"
+                           rotation="0 0 0"></a-curvedimage>
+        </a-scene>
+    </body>
+</html>
